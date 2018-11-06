@@ -1388,6 +1388,14 @@ UpdatePciInfo (
       Ptr++;
       continue;
     }
+    // MS_CHANGE begin
+    if (Ptr->ResType == INCOMPATIBLE_ACPI_ADDRESS_SPACE_TYPE_ROM) {
+      PciIoDevice->IgnoreROM = TRUE;
+      Ptr++;
+      continue;
+    }
+
+    // MS_CHANGE end
 
     for (BarIndex = 0; BarIndex < PCI_MAX_BAR; BarIndex++) {
       if ((Ptr->AddrTranslationOffset != MAX_UINT64) &&
