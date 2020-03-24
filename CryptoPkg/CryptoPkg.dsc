@@ -240,7 +240,6 @@
   }
 !endif
 
-
 [Components.IA32, Components.X64, Components.AARCH64]
   CryptoPkg/Driver/CryptoDxe.inf {
     <Defines>
