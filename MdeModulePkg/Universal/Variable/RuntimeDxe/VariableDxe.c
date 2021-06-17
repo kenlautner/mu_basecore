@@ -452,6 +452,7 @@ FtwNotificationEvent (
     ASSERT (NvStorageVariableSize <= FtwMaxBlockSize);
   }
 
+
   //
   // Let NonVolatileVariableBase point to flash variable store base directly after FTW ready.
   //
