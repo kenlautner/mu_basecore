@@ -382,13 +382,13 @@ SmmInternalFreePool (
     return EFI_INVALID_PARAMETER;
   }
 
+
   FreePoolHdr = (FREE_POOL_HEADER *)((POOL_HEADER *)Buffer - 1);
   ASSERT (FreePoolHdr->Header.Signature == POOL_HEAD_SIGNATURE);
   ASSERT (!FreePoolHdr->Header.Available);
   if (FreePoolHdr->Header.Signature != POOL_HEAD_SIGNATURE) {
     return EFI_INVALID_PARAMETER;
   }
-
   MemoryGuarded = IsHeapGuardEnabled () &&
                   IsMemoryGuarded ((EFI_PHYSICAL_ADDRESS)(UINTN)FreePoolHdr);
   HasPoolTail = !(MemoryGuarded &&
