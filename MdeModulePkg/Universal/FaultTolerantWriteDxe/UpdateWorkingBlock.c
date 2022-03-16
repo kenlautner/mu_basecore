@@ -16,9 +16,7 @@ EFI_FAULT_TOLERANT_WORKING_BLOCK_HEADER  mWorkingBlockHeader = { ZERO_GUID, 0, 0
 
   Since Signature and WriteQueueSize have been known, Crc can be calculated out,
   then the work space header will be fixed.
-
   @param[in]  WorkSpaceLength     Length in bytes of the FTW workspace area.
-
 **/
 VOID
 InitializeLocalWorkSpaceHeader (

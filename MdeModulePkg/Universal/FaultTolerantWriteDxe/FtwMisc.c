@@ -1010,7 +1010,6 @@ InitFtwDevice (
   if (FtwDevice == NULL) {
     return EFI_OUT_OF_RESOURCES;
   }
-
   FtwDevice->WorkSpaceAddress = WorkSpaceAddress;
   FtwDevice->WorkSpaceLength  = FtwWorkingSize;
 

@@ -14,11 +14,14 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <PiDxe.h>
 
 #include <Guid/SystemNvDataGuid.h>
+#include <Guid/VariableFlashInfo.h>       // MU_CHANGE TCBZ3479 - Add Variable Flash Information HOB
 #include <Guid/ZeroGuid.h>
 #include <Protocol/FaultTolerantWrite.h>
 #include <Protocol/FirmwareVolumeBlock.h>
 #include <Protocol/SwapAddressRange.h>
 
+#include <Library/HobLib.h>               // MU_CHANGE TCBZ3479 - Add Variable Flash Information HOB
+#include <Library/SafeIntLib.h>           // MU_CHANGE TCBZ3479 - Add Variable Flash Information HOB
 #include <Library/PcdLib.h>
 #include <Library/DebugLib.h>
 #include <Library/UefiLib.h>
@@ -705,6 +708,8 @@ InitFtwProtocol (
   IN OUT EFI_FTW_DEVICE  *FtwDevice
   );
 
+// MU_CHANGE TCBZ3479 - START - Add Variable Flash Information HOB
+
 /**
   Initialize a local work space header.
 
@@ -718,6 +723,8 @@ VOID
 InitializeLocalWorkSpaceHeader (
   IN  UINTN  WorkSpaceLength
   );
+
+// MU_CHANGE TCBZ3479 - END - Add Variable Flash Information HOB
 
 /**
   Read work space data from work block or spare block.

@@ -76,6 +76,8 @@
 [FeaturePcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFullFtwServiceEnable    ## CONSUMES
 
+[Pcd]
+
 #
 # gBS->CalculateCrc32() is consumed in EntryPoint.
 # PI spec said: When the DXE Foundation is notified that the EFI_RUNTIME_ARCH_PROTOCOL
