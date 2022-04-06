@@ -284,11 +284,9 @@
   #  Include/Guid/VariableFlashInfo.h
   gVariableFlashInfoHobGuid = { 0x5d11c653, 0x8154, 0x4ac3, { 0xa8, 0xc2, 0xfb, 0xa2, 0x89, 0x20, 0xfc, 0x90 }}
 
-  # MU_CHANGE - START - TCBZ3479  - Add Variable Flash Information HOB
   ## Guid of the variable flash information HOB.
   #  Include/Guid/VariableFlashInfo.h
   gVariableFlashInfoHobGuid = { 0x5d11c653, 0x8154, 0x4ac3, { 0xa8, 0xc2, 0xfb, 0xa2, 0x89, 0x20, 0xfc, 0x90 }}
-  # MU_CHANGE - END - TCBZ3479  - Add Variable Flash Information HOB
 
   ## Performance protocol guid that also acts as the performance HOB guid and performance variable GUID
   #  Include/Guid/Performance.h
