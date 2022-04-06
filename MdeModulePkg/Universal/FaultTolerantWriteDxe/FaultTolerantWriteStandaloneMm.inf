@@ -75,6 +75,5 @@
 [FeaturePcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFullFtwServiceEnable    ## CONSUMES
 
-
 [Depex]
   TRUE
