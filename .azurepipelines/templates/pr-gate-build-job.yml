@@ -37,7 +37,7 @@ jobs:
         Build.Targets: 'DEBUG,RELEASE,NO-TARGET,NOOPT'
       TARGET_OTHER:
         Build.Pkgs: 'PcAtChipsetPkg,ShellPkg,StandaloneMmPkg,BaseTools' # MU_CHANGE add BaseTools
-        Build.Targets: 'DEBUG,RELEASE,NO-TARGET'
+        Build.Targets: 'DEBUG,RELEASE,NO-TARGET,NOOPT'
       TARGET_TEST_POLICY:
         Build.Pkgs: 'UnitTestFrameworkPkg,PolicyServicePkg' # MU_CHANGE add policy package
         Build.Targets: 'DEBUG,RELEASE,NO-TARGET,NOOPT'
