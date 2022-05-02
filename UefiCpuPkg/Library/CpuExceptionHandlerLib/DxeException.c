@@ -11,7 +11,8 @@
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/MemoryProtectionHobLib.h> // MU_CHANGE
+
+#include <Library/DxeMemoryProtectionHobLib.h> // MU_CHANGE
 
 CONST UINTN  mDoFarReturnFlag = 0;
 
@@ -72,7 +73,6 @@ InitializeCpuExceptionHandlers (
 }
 
 /**
-
   Registers a function to be called from the processor interrupt handler.
 
   This function registers and enables the handler specified by InterruptHandler for a processor
