@@ -983,6 +983,14 @@ UfsPassThruDriverBindingStart (
       return Status;
     }
   }
+  // MU_CHANGE [BEGIN] - Install UFS Device Config Protocol before caching the device config
+  Status = gBS->InstallMultipleProtocolInterfaces (
+                  &Controller,
+                  &gEfiUfsDeviceConfigProtocolGuid,
+                  &(Private->UfsDevConfig),
+                  NULL
+                  );
+  // MU_CHANGE [END]
 
   //
   // Check if 8 common luns are active and set corresponding bit mask.
