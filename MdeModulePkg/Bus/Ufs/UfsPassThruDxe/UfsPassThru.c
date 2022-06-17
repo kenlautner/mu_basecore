@@ -983,6 +983,7 @@ UfsPassThruDriverBindingStart (
       return Status;
     }
   }
+
   // MU_CHANGE [BEGIN] - Install UFS Device Config Protocol before caching the device config
   Status = gBS->InstallMultipleProtocolInterfaces (
                   &Controller,
@@ -1048,14 +1049,14 @@ UfsPassThruDriverBindingStart (
     goto Error;
   }
 
+  // MU_CHANGE [BEGIN] - Install UFS Device Config Protocol before caching the device config
   Status = gBS->InstallMultipleProtocolInterfaces (
                   &Controller,
                   &gEfiExtScsiPassThruProtocolGuid,
                   &(Private->ExtScsiPassThru),
-                  &gEfiUfsDeviceConfigProtocolGuid,
-                  &(Private->UfsDevConfig),
                   NULL
                   );
+  // MU_CHANGE [END]
   ASSERT_EFI_ERROR (Status);
 
   return EFI_SUCCESS;
