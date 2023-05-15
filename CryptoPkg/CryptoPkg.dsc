@@ -2,8 +2,9 @@
 #  Cryptographic Library Package for UEFI Security Implementation.
 #  PEIM, DXE Driver, and SMM Driver with all crypto services enabled.
 #
-#  Copyright (c) 2009 - 2021, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2009 - 2022, Intel Corporation. All rights reserved.<BR>
 #  Copyright (c) 2020, Hewlett Packard Enterprise Development LP. All rights reserved.<BR>
+#  Copyright (c) 2022, Loongson Technology Corporation Limited. All rights reserved.<BR>
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 ##
@@ -239,6 +240,8 @@
       FILE_GUID = $(PEI_CRYPTO_DRIVER_FILE_GUID)  # MU_CHANGE updated File GUID
   }
 
+      MSFT:*_*_IA32_DLINK_FLAGS = /ALIGN:4096
+      MSFT:*_*_X64_DLINK_FLAGS  = /ALIGN:4096
 
 [Components.IA32, Components.X64, Components.AARCH64]
   CryptoPkg/Driver/CryptoDxe.inf {
@@ -247,6 +250,8 @@
   }
 
 [Components.IA32, Components.X64]
+      MSFT:*_*_IA32_DLINK_FLAGS = /ALIGN:4096
+      MSFT:*_*_X64_DLINK_FLAGS  = /ALIGN:4096
   CryptoPkg/Driver/CryptoSmm.inf {
     <Defines>
       FILE_GUID = $(SMM_CRYPTO_DRIVER_FILE_GUID)# MU_CHANGE updated File GUID
@@ -267,8 +272,8 @@
       MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
       BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
     <PcdsFixedAtBuild>
-      gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xFFFFFFFF
-      !include CryptoPkg/Test/Crypto.pcd.ALL.inc.dsc
+      MSFT:*_*_IA32_DLINK_FLAGS = /ALIGN:4096
+      MSFT:*_*_X64_DLINK_FLAGS  = /ALIGN:4096
     ## MU_CHANGE [END]
   }
   ## MU_CHANGE [END]
