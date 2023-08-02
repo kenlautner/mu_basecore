@@ -240,9 +240,6 @@
       FILE_GUID = $(PEI_CRYPTO_DRIVER_FILE_GUID)  # MU_CHANGE updated File GUID
   }
 
-      MSFT:*_*_IA32_DLINK_FLAGS = /ALIGN:4096
-      MSFT:*_*_X64_DLINK_FLAGS  = /ALIGN:4096
-
 [Components.IA32, Components.X64, Components.AARCH64]
   CryptoPkg/Driver/CryptoDxe.inf {
     <Defines>
@@ -250,8 +247,6 @@
   }
 
 [Components.IA32, Components.X64]
-      MSFT:*_*_IA32_DLINK_FLAGS = /ALIGN:4096
-      MSFT:*_*_X64_DLINK_FLAGS  = /ALIGN:4096
   CryptoPkg/Driver/CryptoSmm.inf {
     <Defines>
       FILE_GUID = $(SMM_CRYPTO_DRIVER_FILE_GUID)# MU_CHANGE updated File GUID
@@ -272,8 +267,8 @@
       MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
       BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
     <PcdsFixedAtBuild>
-      MSFT:*_*_IA32_DLINK_FLAGS = /ALIGN:4096
-      MSFT:*_*_X64_DLINK_FLAGS  = /ALIGN:4096
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xFFFFFFFF
+      !include CryptoPkg/Test/Crypto.pcd.ALL.inc.dsc
     ## MU_CHANGE [END]
   }
   ## MU_CHANGE [END]
