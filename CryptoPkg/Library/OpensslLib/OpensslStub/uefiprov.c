@@ -113,17 +113,21 @@ static const OSSL_ALGORITHM deflt_digests[] = {
     { PROV_NAMES_SHA2_512, "provider=default", ossl_sha512_functions },
 
 #ifndef OPENSSL_NO_SM3
+    // MU_CHANGE START
     { PROV_NAMES_SM3, "provider=default", ossl_sm3_functions },
+    // MU_CHANGE END
 #endif /* OPENSSL_NO_SM3 */
 
 #ifndef OPENSSL_NO_MD5
+    // MU_CHANGE START
     { PROV_NAMES_MD5, "provider=default", ossl_md5_functions },
+    // MU_CHANGE END
 #endif /* OPENSSL_NO_MD5 */
 
     { PROV_NAMES_NULL, "provider=default", ossl_nullmd_functions },
     { NULL, NULL, NULL }
 };
-
+// MU_CHANGE START
 static const OSSL_ALGORITHM_CAPABLE deflt_ciphers[] = {
     ALG(PROV_NAMES_NULL, ossl_null_functions),
     ALG(PROV_NAMES_AES_256_ECB, ossl_aes256ecb_functions),
@@ -144,6 +148,7 @@ static const OSSL_ALGORITHM_CAPABLE deflt_ciphers[] = {
     { { NULL, NULL, NULL }, NULL }
 };
 static OSSL_ALGORITHM exported_ciphers[OSSL_NELEM(deflt_ciphers)];
+// MU_CHANGE END
 
 static const OSSL_ALGORITHM deflt_macs[] = {
     { PROV_NAMES_HMAC, "provider=default", ossl_hmac_functions },
@@ -161,10 +166,14 @@ static const OSSL_ALGORITHM deflt_kdfs[] = {
 
 static const OSSL_ALGORITHM deflt_keyexch[] = {
 #ifndef OPENSSL_NO_DH
+    // MU_CHANGE start - disable DH
     { PROV_NAMES_DH, "provider=default", ossl_dh_keyexch_functions },
+    // MU_CHANGE end - disable DH
 #endif
 #ifndef OPENSSL_NO_EC
+    // MU_CHANGE start - disable DH
     { PROV_NAMES_ECDH, "provider=default", ossl_ecdh_keyexch_functions },
+    // MU_CHANGE end - disable DH
 #endif
     { PROV_NAMES_TLS1_PRF, "provider=default", ossl_kdf_tls1_prf_keyexch_functions },
     { PROV_NAMES_HKDF, "provider=default", ossl_kdf_hkdf_keyexch_functions },
@@ -193,10 +202,12 @@ static const OSSL_ALGORITHM deflt_asym_cipher[] = {
 
 static const OSSL_ALGORITHM deflt_keymgmt[] = {
 #ifndef OPENSSL_NO_DH
+    // MU_CHANGE start - disable DH
     { PROV_NAMES_DH, "provider=default", ossl_dh_keymgmt_functions,
       PROV_DESCS_DH },
     { PROV_NAMES_DHX, "provider=default", ossl_dhx_keymgmt_functions,
       PROV_DESCS_DHX },
+    // MU_CHANGE end - disable DH
 #endif
 
     { PROV_NAMES_RSA, "provider=default", ossl_rsa_keymgmt_functions,
@@ -230,7 +241,10 @@ static const OSSL_ALGORITHM *deflt_query(void *provctx, int operation_id,
     case OSSL_OP_DIGEST:
         return deflt_digests;
     case OSSL_OP_CIPHER:
+        // MU_CHANGE START
         return exported_ciphers;
+        //return NULL;
+        // MU_CHANGE END
     case OSSL_OP_MAC:
         return deflt_macs;
     case OSSL_OP_KDF:
@@ -322,7 +336,9 @@ int ossl_uefi_provider_init(const OSSL_CORE_HANDLE *handle,
     ossl_prov_ctx_set0_core_bio_method(*provctx, corebiometh);
 
     *out = deflt_dispatch_table;
+    // MU_CHANGE START
     ossl_prov_cache_exported_algorithms(deflt_ciphers, exported_ciphers);
+    // MU_CHANGE END
 
     return 1;
 }
