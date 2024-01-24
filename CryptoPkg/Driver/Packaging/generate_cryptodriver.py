@@ -678,7 +678,8 @@ def generate_platform_files():
     flavors = get_flavors()
     phases = ["Pei", "Dxe", "Smm", "StandaloneMm"]
     # Arm is currently disabled
-    arches = ["X64", "AARCH64", "IA32", ]  # "ARM"
+    # Testing enabling ARM
+    arches = ["X64", "AARCH64", "IA32", "ARM"]  # "ARM"
     targets = ["DEBUG", "RELEASE"]
 
     # first we need to generate the INF files
@@ -687,11 +688,13 @@ def generate_platform_files():
         for phase in phases:
             for target in targets:
                 for arch in arches:
-                    if arch == "ARM":
+                    if arch == "ARM" and phase == "Smm":
                         continue
                     if arch == "AARCH64" and phase != "Dxe":
                         continue
-                    if arch != "X64" and phase == "StandaloneMm":
+                    #if arch != "X64" and phase == "StandaloneMm":
+                    #    continue
+                    if arch == "IA32" and phase == "StandaloneMm":
                         continue
                     inf_files.append((flavor, phase, target, arch))
     print(f"Generating {len(inf_files)} inf files")
